@@ -1,0 +1,172 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0"
+  title: Chinwwag API
+
+host: chinwag.xyz
+/basePath: /fusiontables/v2/
+securityDefinitions:
+  - api_key:
+      type: apiKey
+      name: api_key
+  - fb_auth:
+      type: OAuth2
+      name: fb_auth
+      
+
+# Resource definitions go here
+definitions:
+    Person:
+      type: object
+      properties:
+        - name: _uuid
+          type: string
+          required: true
+        - name: conversations
+          type: array
+          required: true
+        - avatar:
+          type: object
+          required: false
+    Corporation:
+      type: object
+      properties:
+        - name: profile
+          type: object
+          required: true
+    Message:
+      type: object
+      properties:
+        - name: _uuid
+          type: string
+          required: true
+        - name: sender
+          type: object
+          required: true
+        - name: recipient
+          type: object
+          required: true
+        - name: conversation
+          type: object
+          description: The conversation this message belongs to
+          required: true
+        - name: timestamp
+          type: string
+          required: true
+        - name: read_time
+          type: string
+          required: true
+    Conversation:
+      type: object
+      properties:
+        - name: _uuid
+          type: string
+          required: true
+        - name: messages
+          type: array
+          description: The collection of messages exchanged
+          required: true
+        - name: start
+          type: string
+          description: Start time of the conversation
+          required: true
+        - name: end
+          type: string
+          description: End time of the conversation
+          required: true
+        - name: topic
+          type: string
+          description: The leading topic of the conversation
+          required: true
+        - name: participants
+          type: array
+          description: Collection of participating members of the conversation
+          required: true
+     Persona:
+       type: object
+       properties:
+         - name: _uuid
+           type: string
+           description: The overall profile of a Persona
+           required: true
+         - name: interests
+           type: array
+           description: A collection of tags, detailing the Person's reflected interests
+           required: false
+
+# Describe your paths here
+paths:
+
+  # This is a path endpoint. Change it.
+  /auth/facebook:
+    post:
+      operationId: authOnFacebook
+      summary: Get the user authenticated into Chinwag
+      description: Facebook OAuth2 Redirect, this is the default means of authentication / authorization
+      produces: application/json
+      parameters:
+      responses:
+      security:
+        - $ref: "#/securityDefinitions/api_key"
+
+    post:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
+        - $ref: "#/securityDefinitions/api_key"
+
+    put:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
+        - $ref: "#/securityDefinitions/api_key"
+
+  /tables/{tableId}:
+    parameters:
+      - name: tableId
+        in: path
+        type: string
+        required: true
+    get:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
+        - $ref: "#/securityDefinitions/api_key"
+    get:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
+        - $ref: "#/securityDefinitions/"
+
+    patch:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
+
+    delete:
+      summary:
+      description:
+      produces:
+      parameters:
+      responses:
+      security:
