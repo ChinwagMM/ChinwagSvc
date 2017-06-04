@@ -5,75 +5,62 @@ import Banner from './Banner'
 class Chat extends React.Component {
    constructor() {
       super()
+
+      this.state = {
+         messages: [],
+         users: []
+      }
    }
 
-   getMessages = () => {
+   componentWillMount() {
+      this.state.messages = this.getMessages(1)
+   }
+
+   componentWillUpdate() {
+      // this.state.messages
+   }
+
+   getMessages = (limit) => {
       const messages = [
          {
-            'name':'Dan Mensa',
+            'name':'Chinwag',
             'color': 'blue',
-            'info': '28 - Male - NJ',
+            'info': 'Ask me anything',
             'img':'brand.png',
-            'message':"Hey all! My name is Dan I'm a 28 year old male and I am looking to get coverage in New Jersey, what are my options?"
-         },
-         {
-            'name':'Aetna',
-            'color': 'red',
-            'info': 'Specialist in tartan paint',
-            'img':'brand.png',
-            'message':'Hi Dan! We can offer you a monthly premium of $237. Let us know if you have any other questions.'
-         },
-         {
-            'name':'Cigna',
-            'color': 'orange',
-            'info': 'Specialist in pooping well',
-            'img':'brand.png',
-            'message':'Hey Dan, based on the information you provided we decided that we can provide you a monthly premium of $253 and we cover 60% of your prescription costs.'
-         },
-         {
-            'name':'Blue Cross Shield',
-            'color': 'blue',
-            'info': 'Specialist in pooping well',
-            'img':'brand.png',
-            'message':'Hey Dan. We can offer you a quote of $415 which includes full dental and vision coverage.'
-         },
-         {
-            'name':'Humana',
-            'color': 'green',
-            'info': 'Specialist in pooping well',
-            'img':'brand.png',
-            'message':'Dan. What’s up? Our premium is $240 and over 90% of physicians in your area take our insurance.'
+            'message':'Hi Dan! I found some options for your health insurance.\n\nAt any time you can see detailed info on each option above this message. Do you have a budget?'
          },
          {
             'name':'Dan Mensa',
-            'color': 'blue',
+            'color': 'gray',
             'info': '28 - Male - NJ',
             'img':'brand.png',
-            'message':"Are you all a part of Obamacare?"
+            'message':"I can afford $300 a month total"
          },
          {
-            'name':'Aetna',
-            'color': 'red',
-            'info': 'Basic brand info',
-            'img':'brand.png',
-            'message':"Unfortunately we aren't at the moment but we are hoping to return soon."
-         },
-         {
-            'name':'Blue Cross Shield',
+            'name':'Chinwag',
             'color': 'blue',
-            'info': 'Basic brand info',
+            'info': 'Ask me anything',
             'img':'brand.png',
-            'message':"We sure are!"
+            'message':'Okay no problem, the options above are updated for your price range.'
          },
          {
-            'name':'Humana',
-            'color': 'green',
-            'info': 'Basic brand info',
+            'name':'Dan Mensa',
+            'color': 'gray',
+            'info': '28 - Male - NJ',
             'img':'brand.png',
-            'message':"No but we are working on it."
+            'message':'Are any of these covered under Obamacare?'
          },
+         {
+            'name':'Chinwag',
+            'color': 'blue',
+            'info': 'Ask me anything',
+            'img':'brand.png',
+            'message':'Blue Cross provides all the coverage you need for $295'
+         },
+
       ]
-      return messages
+      const slice = (length) ? messages.slice(0,length) : messages
+      return slice
    }
 
    getColor = (i) => {
@@ -164,11 +151,11 @@ class Chat extends React.Component {
       // const messages = this.getMessages()
       return(
          <div className="chat">
-            <Banner title="Get an answer from:"/>
+            <Banner title="Here are your options:"/>
             {this.renderUsers()}
             <div className="chat__fullscreen">
                <div className="tal maxWidth500">
-                  {this.messages.map((m, i)=>this.renderMessage(m, i))}
+                  {this.state.messages.map((m, i)=>this.renderMessage(m, i))}
                </div>
                {this.renderChatbox()}
             </div>

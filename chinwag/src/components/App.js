@@ -16,7 +16,7 @@ const App = React.createClass({
                </h1>
                <p>
 
-                  Where companies and brands<br/>compete for your attention
+                  Where companies and brands<br/>compete for your dollar.
                   <br/><br/><br/>
                </p>
                <p>
