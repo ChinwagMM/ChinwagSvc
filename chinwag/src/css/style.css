@@ -429,6 +429,10 @@ button:active,
 .bg--green {
   background-color: #008000 !important;
 }
+.bg--gray {
+  background-color: #eee;
+  color: #2993fc;
+}
 .survey__buttons {
   max-width: 500px;
   margin: 0 auto;
