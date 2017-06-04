@@ -8,12 +8,16 @@ info:
   version: "1.0"
   title: Chinwwag API
 
-host: googleapis.com
+host: chinwag.xyz
 /basePath: /fusiontables/v2/
 securityDefinitions:
   - api_key:
       type: apiKey
       name: api_key
+  - fb_auth:
+      type: OAuth2
+      name: fb_auth
+      
 
 # Resource definitions go here
 definitions:
@@ -99,9 +103,10 @@ definitions:
 paths:
 
   # This is a path endpoint. Change it.
-  /tables:
-    get:
-      summary:
+  /auth/facebook:
+    post:
+      operationId: authOnFacebook
+      summary: 
       description:
       produces:
       parameters:
@@ -148,7 +153,7 @@ paths:
       parameters:
       responses:
       security:
-        - $ref: "#/securityDefinitions/api_key"
+        - $ref: "#/securityDefinitions/"
 
     patch:
       summary:
