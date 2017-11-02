@@ -106,9 +106,9 @@ paths:
   /auth/facebook:
     post:
       operationId: authOnFacebook
-      summary: 
-      description:
-      produces:
+      summary: Get the user authenticated into Chinwag
+      description: Facebook OAuth2 Redirect, this is the default means of authentication / authorization
+      produces: application/json
       parameters:
       responses:
       security:
